@@ -1,48 +1,41 @@
 import streamlit as st
-import PIL
-from PIL import Image
 import io
+import os
 import numpy as np
+import cv2
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.vgg16 import preprocess_input
-from tempfile import NamedTemporaryFile
 
 
 def conversion(img):
-    x = img.convert("RGB")
-    x = x.resize((224, 224), Image.NEAREST)
-    x = image.img_to_array(x)
-    x = np.expand_dims(x, axis=0)
-    img_data = preprocess_input(x)
+    x = cv2.imdecode(np.frombuffer(img.read(), dtype=np.uint8), 1)
+    x = cv2.resize(x, (64, 64))
+    x = x / 255.
+    print(x.dtype)
+    img_data = np.expand_dims(x, axis=0)
     return img_data
 
 
 def predict(img_data):
-    model = load_model('chest_xray_pneumonia.h5')
+    model = load_model('model/pneumonia_A87_R92_AUC94.h5')
     classes = model.predict(img_data)
-    result = int(classes[0][0])
+    print(classes)
+    result = np.round(classes[0][0])
+    print(result)
     return result
 
-def load_image(img_file):
-    img = Image.open(img_file)
-    return img
 
-def main():
-    uploaded_file = st.file_uploader("Choose an image...", type="jpeg")
-    if uploaded_file is not None:
-        s = PIL.Image.open(uploaded_file)
-        st.image(s, caption="Uploaded Image", use_column_width=True)
-        st.write("")
-        st.write("Analyzing...")
-        res = conversion(s)
-        pred = predict(res)
-        st.write(pred)
-        if pred == 0:
-            st.write("Person is Affected By PNEUMONIA")
-        else:
-            st.write("Result is Normal")
+uploaded_file = st.file_uploader("Choose an image...", type="jpeg")
+if uploaded_file is not None:
+    st.write('You selected `%s`' % uploaded_file)
+    st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+    st.write("")
+    st.write("Analyzing...")
+    res = conversion(uploaded_file)
+    pred = predict(res)
+    st.write(pred)
+    if pred < 0.5:
+        st.write("Result is Normal")
 
+    else:
+        st.write("Person is infected By PNEUMONIA")
 
-if __name__ == "__main__":
-    main()
