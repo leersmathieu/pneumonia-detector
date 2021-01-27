@@ -1,6 +1,6 @@
-streamlit~=0.75.0
-numpy~=1.19.5
-opencv-python~=4.5.1.48
-tensorflow~=2.4.1
-pandas
-matplotlib
+streamlit
+tensorflow
+Pillow
+numpy
+opencv-python-headless
+pybase64
