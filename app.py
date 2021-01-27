@@ -13,8 +13,7 @@ dim = 3
 
 ######################
 
-row1_1, row1_2 = st.beta_columns((2, 4))
-
+# row1_1, row1_2 = st.beta_columns((2, 4))
 
 def conversion(img):
     x = cv2.imdecode(np.frombuffer(img.read(), dtype=np.uint8), 1)
@@ -29,11 +28,9 @@ def conversion(img):
 def predict(img_data):
     model = load_model('model/pneumonia_A88_R94_AUC95_128x128.h5')
     classes = model.predict(img_data)
-    print(classes)
-    st.write(classes[0][0])
     result = np.round(classes[0][0])
-    print(result)
-    return result
+    percent = round(classes[0][0],2)
+    return result, percent
 
 
 uploaded_file = st.file_uploader("Choose an image...", type="jpeg")
@@ -43,10 +40,13 @@ if uploaded_file is not None:
     st.write("")
     st.write("Analyzing...")
     res = conversion(uploaded_file)
-    pred = predict(res)
+    pred, percent = predict(res)
     if pred < 0.5:
+        st.write(100 - (percent * 100))
         st.write("Result is Normal")
 
+
     else:
+        st.write(percent * 100 )
         st.write("Person is infected By PNEUMONIA")
 
