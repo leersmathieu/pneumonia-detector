@@ -4,7 +4,6 @@ FROM python:3.8-slim-buster
 RUN apt-get update
 RUN apt-get -y upgrade
 
-RUN pip install -y --upgrade pip setuptools wheel
 RUN apt-get -y libxml2-dev libxmlsec1-dev
 
 # Remove all cached file. Get a smaller image.
