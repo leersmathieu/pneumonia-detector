@@ -4,8 +4,6 @@ FROM python:3.8-slim-buster
 RUN apt-get update
 RUN apt-get -y upgrade
 
-RUN apt-get -y libxml2-dev libxmlsec1-dev
-
 # Remove all cached file. Get a smaller image.
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
