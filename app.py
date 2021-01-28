@@ -21,8 +21,8 @@ row1_1, row1_2 = st.beta_columns((1, 1))
 
 st.title("Pneumonia Detector")
 
-# loading model
-model = load_model("./model/pneumonia_A91_R98_AUC95_128x128.h5")
+# loading my_model
+model = load_model("my_model/pneumonia_A91_R98_AUC95_128x128.h5")
 
 uploaded_file = st.file_uploader("Choose an image...", type="jpeg")
 if uploaded_file is not None:

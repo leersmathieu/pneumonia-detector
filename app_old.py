@@ -25,7 +25,7 @@ def conversion(img):
 
 
 def predict(img_data):
-    model = load_model('model/pneumonia_A88_R94_AUC95_128x128.h5')
+    model = load_model('my_model/pneumonia_A88_R94_AUC95_128x128.h5')
     classes = model.predict(img_data)
     result = np.round(classes[0][0])
     percent = round(classes[0][0], 2)
