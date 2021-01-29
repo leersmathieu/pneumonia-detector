@@ -1,5 +1,30 @@
 # pneumonia-detector
-Little app for detect pneumonia by analyzing one x-ray picture
+Little app for detect pneumonia by analyzing an x-ray of the lungs
+
+- You can check the challenge and the dataset used [here](pneumonia_modeling.ipynb)  
+- You can follow my development step in the [modeling notebook](pneumonia_challenge.ipynb)
+
+
+## Data
+
+After a very simple analysis I could notice that there was
+
+For training : 
+ - 1341 images of normal lungs
+ - 3875 images of lungs with pneumonia (virus or bacteria)
+
+
+## Accuracy
+
+```
+binary-accuracy: 91
+Recall : 98
+AUC : 95
+```
+
+Confusion matrix :
+
+insert image
 
 ## Docker
 

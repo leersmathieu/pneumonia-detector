@@ -22,7 +22,7 @@ row1_1, row1_2 = st.beta_columns((1, 1))
 st.title("Pneumonia Detector")
 
 # loading my_model
-model = load_model("my_model/pneumonia_A91_R98_AUC95_128x128.h5")
+model = load_model("my_model/pneumonia_A924_R96_AUC96_128x128.h5")
 
 uploaded_file = st.file_uploader("Choose an image...", type="jpeg")
 if uploaded_file is not None:
@@ -34,7 +34,7 @@ if uploaded_file is not None:
     resized = cv.resize(opencv_image, (input_size_1, input_size_2))
     normalized = resized / 255
     with row1_1:
-        st.title("what's the computer see")
+        st.title("What the computer see")
         st.image(resized, width=preview_width)
 
     # reshaping
