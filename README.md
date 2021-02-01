@@ -13,18 +13,21 @@ For training :
  - 1341 images of normal lungs
  - 3875 images of lungs with pneumonia (virus or bacteria)
 
+For testing : 
+ - 234 images of normal lungs
+ - 390 images of lungs with pneumonia (virus or bacteria)
 
 ## Accuracy
 
 ```
-binary-accuracy: 91
+Accuracy: 92
 Recall : 98
-AUC : 95
+AUC : 97
 ```
 
-Confusion matrix :
+**Confusion matrix :**
 
-insert image
+![Consufion matrix](assets/cm.png)
 
 ## Docker
 
