@@ -1,8 +1,8 @@
 # pneumonia-detector
 Little app for detect pneumonia by analyzing an x-ray of the lungs
 
-- You can check the challenge and the dataset used [here](pneumonia_modeling.ipynb)  
-- You can follow my development step in the [modeling notebook](pneumonia_challenge.ipynb)
+- You can check the challenge and the dataset used [here](pneumonia_challenge.ipynb)  
+- You can follow my development step in the [modeling notebook](pneumonia_modeling.ipynb)
 
 
 ## Data
